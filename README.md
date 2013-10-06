@@ -1,4 +1,4 @@
-SUT
+Simple Unit Test
 ===
 
 Simple Unit Test. Minimalistic unit testing framework for c++. Inspired by the remarkably simple [minunit](http://www.jera.com/techinfo/jtns/jtn002.html).
