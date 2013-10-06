@@ -18,7 +18,7 @@ auto main() -> int \
     try { [&](){ expr }(); fprintf(stdout, "."); } \
     catch (...) { pico_failed_tests++; fprintf(stdout, "f"); }
 
-#define P_ASSERT(condition, msg) \
+#define S_ASSERT(condition, msg) \
 if( !(condition) ) { \
     fprintf(stderr, "\n  %s.\n  It %s! It\'s not!\n", msg, pico_current_test); \
     fprintf(stderr, "  Assertion: %s\n", #condition); \
