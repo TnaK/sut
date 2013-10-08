@@ -13,9 +13,9 @@ auto main() -> int \
     return simple_failed_tests; \
 }
 
-#define IT(simple_test_name, expr) \
+#define IT(simple_test_name, ...) \
     simple_current_test = simple_test_name; \
-    try { [&](){ expr }(); fprintf(stdout, "."); } \
+    try { [&](){ __VA_ARGS__ }(); fprintf(stdout, "."); } \
     catch (...) { simple_failed_tests++; fprintf(stdout, "f"); }
 
 #define S_ASSERT(condition, msg) \
