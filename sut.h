@@ -6,7 +6,7 @@ auto main() -> int \
 { \
     int simple_failed_tests = 0; \
     const char * simple_current_test = nullptr; \
-    fprintf(stdout, "\n%s\n  ", system_under_test); \
+    const char * simple_current_system = system_under_test; \
 
 #define END() \
     fprintf(stdout, "\n\n%d failed tests\n\n", simple_failed_tests); \
@@ -20,8 +20,8 @@ auto main() -> int \
 
 #define S_ASSERT(condition, msg) \
 if( !(condition) ) { \
-    fprintf(stderr, "\n  %s.\n  It %s! It\'s not!\n", msg, simple_current_test); \
-    fprintf(stderr, "  Assertion: %s\n", #condition); \
+    fprintf(stderr, "\n  %s.\n  %s %s\n", msg, simple_current_system, simple_current_test); \
+    fprintf(stderr, "  Assertion: %s failed!\n", #condition); \
     fprintf(stderr, "    at %s:%d\n\n\t", __FILE__, __LINE__); \
     throw 1; \
 } \
