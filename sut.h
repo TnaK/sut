@@ -1,6 +1,8 @@
 #ifndef SIMPLE_UNIT_TESTING_FRAMEWORK
 #define SIMPLE_UNIT_TESTING_FRAMEWORK
 
+#include <cstdio>
+
 #define DESCRIBE(system_under_test) \
 auto main() -> int \
 { \
