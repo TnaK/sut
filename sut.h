@@ -58,8 +58,8 @@ auto main() -> int \
         std::cout << "e"; \
         std::cerr << std::endl; \
         std::cerr << "Scenario : " << simple_current_system << " " << simple_current_test << std::endl; \
-        std::cerr << "Error    : " << e.what() << std::endl; \
-        std::cerr << "  at " << __FILE__ << ":" << __LINE__ << std::endl; \
+        std::cerr << "Error    : " << e.what(); \
+        std::cerr << "at " << __FILE__ << ":" << __LINE__ << std::endl; \
     } \
 }
 
