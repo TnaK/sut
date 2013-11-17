@@ -1,6 +1,7 @@
 #ifndef SIMPLE_UNIT_TESTING_FRAMEWORK
 #define SIMPLE_UNIT_TESTING_FRAMEWORK
 
+#include <functional>
 #include <cstdio>
 #include <iostream>
 #include <string>
@@ -36,15 +37,25 @@ auto main() -> int \
     int simple_failed_tests = 0; \
     const char * simple_current_test = nullptr; \
     const char * simple_current_system = system_under_test; \
+    std::function<void()> sut_setup = [&]{ }; \
+    std::function<void()> sut_teardown = [&]{ }; \
 
 #define END() \
     fprintf(stdout, "\n\n%d failed tests\n\n", simple_failed_tests); \
     return simple_failed_tests; \
 }
 
+#define BEFORE(...) { \
+    sut_setup = [&] { __VA_ARGS__ }; \
+}
+
+#define AFTER(...) { \
+    sut_teardown = [&] { __VA_ARGS__ }; \
+}
+
 #define IT(simple_test_name, ...) {\
     simple_current_test = simple_test_name; \
-    try { [&](){ __VA_ARGS__ }(); fprintf(stdout, "."); } \
+        try { sut_setup(); [&](){ __VA_ARGS__ }(); sut_teardown(); fprintf(stdout, "."); } \
     catch (assertion_failure &f) { \
         simple_failed_tests++; \
         std::cout << "f"; \
