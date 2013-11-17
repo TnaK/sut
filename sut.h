@@ -2,7 +2,6 @@
 #define SIMPLE_UNIT_TESTING_FRAMEWORK
 
 #include <functional>
-#include <cstdio>
 #include <iostream>
 #include <string>
 #include <sstream>
@@ -79,6 +78,13 @@ if( !(condition) ) { \
     std::stringstream what_arg; \
     what_arg << "Assertion: " << #condition << " failed!" << std::endl; \
     what_arg << "Message  : " << msg; \
+    throw assertion_failure(what_arg.str()); \
+} \
+
+#define ASSERT(condition) \
+if( !(condition) ) { \
+    std::stringstream what_arg; \
+    what_arg << "Assertion: " << #condition << " failed!" << std::endl; \
     throw assertion_failure(what_arg.str()); \
 } \
 
